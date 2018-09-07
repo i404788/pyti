@@ -7,7 +7,7 @@ from pyti.exponential_moving_average import (
     )
 
 
-def true_strength_index(data):
+def true_strength_index(close_data):
     """
     True Strength Index.
 
@@ -25,10 +25,10 @@ def true_strength_index(data):
 
     TSI = 100 x (Double Smoothed PC / Double Smoothed Absolute PC)
     """
-    if len(data) < 40:
+    if len(close_data) < 40:
         raise RuntimeError("Data must have at least 40 items")
 
-    pc = np.diff(data, 1)
+    pc = np.diff(close_data, 1)
     apc = np.abs(pc)
 
     num = ema(pc, 25)
@@ -37,5 +37,5 @@ def true_strength_index(data):
     den = ema(den, 13)
 
     tsi = 100 * num / den
-    tsi = fill_for_noncomputable_vals(data, tsi)
+    tsi = fill_for_noncomputable_vals(close_data, tsi)
     return tsi
