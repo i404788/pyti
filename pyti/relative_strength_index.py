@@ -19,7 +19,6 @@ def relative_strength_index(data, period):
     changes = [data_tup[1] - data_tup[0] for data_tup in zip(data[::1], data[1::1])]
 
     gains = [0 if val < 0 else val for val in changes]
-
     losses = [0 if val > 0 else abs(val) for val in changes]
 
     avg_gain = np.mean(gains[:period])
