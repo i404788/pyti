@@ -13,7 +13,7 @@ def percent_k(high_data, low_data, close_data, period):
     %K.
 
     Formula:
-    %k = data(t) - low(n) / (high(n) - low(n))
+    %k = (data(t) - low(n)) / (high(n) - low(n))
     """
     print (len(high_data))
     print (period)
